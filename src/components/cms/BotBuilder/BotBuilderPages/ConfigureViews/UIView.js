@@ -334,32 +334,28 @@ class UIView extends Component {
                 Add a website
               </Button>
               {dataSource.length !== 0 && (
-                <div style={{ overflowX: 'auto' }}>
-                  <Table style={{ border: '1px solid rgba(224, 224, 224, 1)' }}>
-                    <TableHead style={{ backgroundColor: '#FAFAFA' }}>
-                      <TableRow>
-                        <TableCell>Website</TableCell>
-                        <TableCell>Date Added</TableCell>
-                        <TableCell>Operation</TableCell>
+                <Table style={{ border: '1px solid rgba(224, 224, 224, 1)' }}>
+                  <TableHead style={{ backgroundColor: '#FAFAFA' }}>
+                    <TableRow>
+                      <TableCell>Website</TableCell>
+                      <TableCell>Date Added</TableCell>
+                      <TableCell>Operation</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {dataSource.map(row => (
+                      <TableRow key={row.id}>
+                        <TableCell>{row.name}</TableCell>
+                        <TableCell>{row.date}</TableCell>
+                        <TableCell>
+                          <ActionDiv onClick={() => this.handleDelete(row.key)}>
+                            Delete
+                          </ActionDiv>
+                        </TableCell>
                       </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {dataSource.map(row => (
-                        <TableRow key={row.id}>
-                          <TableCell>{row.name}</TableCell>
-                          <TableCell>{row.date}</TableCell>
-                          <TableCell>
-                            <ActionDiv
-                              onClick={() => this.handleDelete(row.key)}
-                            >
-                              Delete
-                            </ActionDiv>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
+                    ))}
+                  </TableBody>
+                </Table>
               )}
             </Container>
           ) : null}
